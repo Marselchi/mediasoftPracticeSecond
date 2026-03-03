@@ -1,0 +1,146 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1772545860604-1
+      author: Marselchi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_matches
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: season_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: home_team_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: guest_team_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: date
+                  type: DATETIME
+              - column:
+                  name: home_score
+                  type: INT
+              - column:
+                  name: guest_score
+                  type: INT
+              - column:
+                  name: status
+                  type: VARCHAR(255)
+              - column:
+                  name: round
+                  type: INT
+            tableName: matches
+  - changeSet:
+      id: 1772545860604-2
+      author: Marselchi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_seasons
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: start_date
+                  type: DATETIME
+              - column:
+                  name: end_date
+                  type: DATETIME
+              - column:
+                  name: active
+                  type: BOOLEAN
+            tableName: seasons
+  - changeSet:
+      id: 1772545860604-3
+      author: Marselchi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_teams
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: short_name
+                  type: VARCHAR(255)
+            tableName: teams
+  - changeSet:
+      id: 1772545860604-4
+      author: Marselchi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: name
+            constraintName: uc_teams_name
+            tableName: teams
+  - changeSet:
+      id: 1772545860604-5
+      author: Marselchi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: guest_team_id
+            baseTableName: matches
+            constraintName: FK_MATCHES_ON_GUEST_TEAM
+            referencedColumnNames: id
+            referencedTableName: teams
+  - changeSet:
+      id: 1772545860604-6
+      author: Marselchi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: home_team_id
+            baseTableName: matches
+            constraintName: FK_MATCHES_ON_HOME_TEAM
+            referencedColumnNames: id
+            referencedTableName: teams
+  - changeSet:
+      id: 1772545860604-7
+      author: Marselchi
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: season_id
+            baseTableName: matches
+            constraintName: FK_MATCHES_ON_SEASON
+            referencedColumnNames: id
+            referencedTableName: seasons
+
