@@ -15,28 +15,28 @@ import java.time.LocalDateTime;
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id")
-    Season season;
+    private Season season;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "home_team_id", nullable = false)
-    Team homeTeam;
+    private Team homeTeam;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "guest_team_id", nullable = false)
-    Team guestTeam;
+    private Team guestTeam;
 
     @Column(nullable = false)
-    LocalDateTime date;
+    private LocalDateTime date;
 
-    Integer homeScore;
+    private Integer homeScore;
 
-    Integer guestScore;
+    private Integer guestScore;
 
     @Enumerated(EnumType.STRING)
-    MatchStatus status;
+    private MatchStatus status;
 
-    Integer round;
+    private Integer round;
 }

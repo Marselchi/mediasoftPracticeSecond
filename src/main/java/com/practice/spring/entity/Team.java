@@ -11,12 +11,12 @@ import lombok.Setter;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     //В тз никаких ограничений не стоит (длина например), и соответственно дальше их тоже не будет.
     // * Без необходимости
-    String name;
+    private String name;
 
-    String shortName;
+    private String shortName;
 }

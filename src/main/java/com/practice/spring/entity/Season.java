@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 public class Season {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column(nullable = false)
-    String name;
+    private String name;
     @Column(nullable = false)
-    LocalDateTime startDate;
-    LocalDateTime endDate;
-    Boolean active;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private Boolean active;
 }
