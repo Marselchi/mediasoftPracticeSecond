@@ -45,10 +45,9 @@ class StandingsServiceTest {
                 buildMatch("A", "C", 0, 1)
         );
 
-        when(matchRepository.findBySeasonIdAndDateLessThanEqualAndStatus(
+        when(matchRepository.findBySeasonIdAndDateLessThanEqual(
                 eq(1L),
-                any(LocalDateTime.class),
-                eq(MatchStatus.FINISHED)
+                any(LocalDateTime.class)
         )).thenReturn(matches);
 
         when(seasonRepository.findById(1L)).thenReturn(

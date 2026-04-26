@@ -1,5 +1,6 @@
 package com.practice.spring.dto;
 
+import com.practice.spring.util.enums.MatchStatus;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
@@ -25,4 +26,5 @@ public class MatchRequestDTO {
     @PositiveOrZero
     Integer guestScore;
     Integer round;
+    MatchStatus status;
 }

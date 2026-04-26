@@ -6,7 +6,6 @@ import com.practice.spring.entity.Match;
 import com.practice.spring.entity.Season;
 import com.practice.spring.repository.MatchRepository;
 import com.practice.spring.repository.SeasonRepository;
-import com.practice.spring.util.enums.MatchStatus;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +20,8 @@ public class StandingsService {
     private final SeasonRepository seasonRepository;
 
     public StandingsResponseDTO getStandings(Long seasonId, LocalDate date) {
-        List<Match> matches = matchRepository.findBySeasonIdAndDateLessThanEqualAndStatus(
-                seasonId, date.atTime(LocalTime.MAX), MatchStatus.FINISHED);
+        List<Match> matches = matchRepository.findBySeasonIdAndDateLessThanEqual(
+                seasonId, date.atTime(LocalTime.MAX));
 
         Map<String, TeamStats> stats = new LinkedHashMap<>();
 
